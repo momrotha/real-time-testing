@@ -85,38 +85,31 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # 3. Deploy to Operations Server (Machine 2)
+  # 3. Deploy to Operations Server (Machine 2 / Self-Hosted Runner)
   deploy:
     name: Production Deploy to Machine 2
     needs: build-and-push
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rotha'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy to Machine 2 via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        continue-on-error: true
-        with:
-          host: ${{ secrets.DEPLOY_SERVER_IP }}
-          username: ${{ secrets.DEPLOY_SERVER_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.DEPLOY_SERVER_PORT || 22 }}
-          script: |
-            echo "Logging in to GitHub Container Registry..."
-            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Deploy AURA Tech Shop Locally
+        run: |
+          echo "Logging in to GitHub Container Registry..."
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            echo "Pulling latest image..."
-            docker pull ghcr.io/${{ github.repository }}:latest
+          echo "Pulling latest image..."
+          docker pull ghcr.io/${{ github.repository }}:latest
 
-            echo "Stopping old container..."
-            docker stop aura-shop-web || true
-            docker rm aura-shop-web || true
+          echo "Stopping old container..."
+          docker stop aura-shop-web || true
+          docker rm aura-shop-web || true
 
-            echo "Starting new container on port 1111..."
-            docker run -d \
-              --name aura-shop-web \
-              -p 1111:80 \
-              --restart always \
-              ghcr.io/${{ github.repository }}:latest
+          echo "Starting new container on port 1111..."
+          docker run -d \
+            --name aura-shop-web \
+            -p 1111:80 \
+            --restart always \
+            ghcr.io/${{ github.repository }}:latest
 
-            echo "Deployment complete! AURA Tech shop is live!"
+          echo "Deployment complete! AURA Tech shop is live at http://localhost:1111"

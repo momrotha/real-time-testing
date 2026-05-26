@@ -126,7 +126,7 @@ jobs:
             echo "Launching brand new updated Nginx server..."
             docker run -d \
               --name aura-shop-web \
-              -p 1111:80 \
+              -p 80:80 \
               --restart always \
               ghcr.io/${{ github.repository }}:latest
               

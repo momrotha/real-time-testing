@@ -107,7 +107,9 @@ jobs:
           
           echo "Setting up SSH Key..."
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          cat << 'EOF' > ~/.ssh/id_rsa
+${{ secrets.DEPLOY_SSH_KEY }}
+EOF
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$SERVER_IP" >> ~/.ssh/known_hosts
           

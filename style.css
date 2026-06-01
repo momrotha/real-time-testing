@@ -1,23 +1,23 @@
 /* AURA Tech - Premium Cyberpunk & Glassmorphic Design System */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap');
 
 :root {
-    --bg-main: #06070d;
-    --bg-card: rgba(18, 20, 36, 0.65);
-    --bg-glass: rgba(10, 11, 22, 0.75);
-    --border-glass: rgba(255, 255, 255, 0.06);
-    --border-glow: rgba(0, 245, 255, 0.2);
+    --bg-main: #f0f0f0;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-glass: rgba(240, 240, 240, 0.90);
+    --border-glass: rgba(0, 0, 0, 0.08);
+    --border-glow: rgba(0, 180, 200, 0.3);
     
-    --color-primary: #00f5ff; /* Neon Teal */
-    --color-secondary: #bd00ff; /* Neon Violet */
-    --color-accent: #ff5e00; /* Neon Orange */
+    --color-primary: #0099aa; /* Teal (darkened for light bg) */
+    --color-secondary: #8800cc; /* Violet (darkened for light bg) */
+    --color-accent: #dd4400; /* Orange (darkened for light bg) */
     
-    --text-primary: #f1f5f9;
-    --text-muted: #94a3b8;
+    --text-primary: #1a1a2e;
+    --text-muted: #555577;
     --text-dark: #0f172a;
     
-    --glow-teal: 0 0 20px rgba(0, 245, 255, 0.35);
-    --glow-violet: 0 0 20px rgba(189, 0, 255, 0.35);
+    --glow-teal: 0 0 20px rgba(0, 180, 200, 0.20);
+    --glow-violet: 0 0 20px rgba(136, 0, 204, 0.20);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -27,7 +27,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -36,8 +36,8 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(0, 245, 255, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 10% 20%, rgba(136, 0, 204, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 180, 200, 0.04) 0%, transparent 40%);
     background-attachment: fixed;
 }
 
@@ -45,7 +45,7 @@ body {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--bg-main);
+    background: #d8d8d8;
 }
 ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
